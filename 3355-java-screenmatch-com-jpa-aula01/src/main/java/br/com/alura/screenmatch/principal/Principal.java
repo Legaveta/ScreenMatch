@@ -110,7 +110,7 @@ public class Principal {
 
         }
         else {
-            System.out.println("Serie não encontrada!!");
+            System.out.println("Serie não encontrada!!!");
         }
 
         }
