@@ -7,7 +7,6 @@ import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -110,7 +109,7 @@ public class Principal {
 
         }
         else {
-            System.out.println("Serie não encontrada!!!");
+            System.out.println("Serie não encontrada!!!!!!");
         }
 
         }
