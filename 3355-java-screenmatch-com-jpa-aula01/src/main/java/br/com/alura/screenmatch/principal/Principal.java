@@ -7,7 +7,7 @@ import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,10 +36,11 @@ public class Principal {
         var opcao = -1;
         while(opcao != 0) {
             var menu = """
-                    1 - Buscar séries!
-                    2 - Buscar episódios!
-                    3 - Listar séries buscadas!
-                    0 - Sair
+                    1 - Buscar séries
+                    2 - Buscar episódios
+                    3 - Listar séries buscadas
+                                    
+                    0 - Sair                                 
                     """;
 
             System.out.println(menu);
@@ -109,7 +110,7 @@ public class Principal {
 
         }
         else {
-            System.out.println("Serie não encontrada!!!!!!!!!");
+            System.out.println("Serie não encontrada!!!");
         }
 
         }
