@@ -115,8 +115,13 @@ public class Principal {
         }
 
     private void listarSeriesBuscadas(){
-        series = repository.findAll();
-        System.out.println(series);
+        List<Serie> series = repository.findAll();
+
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
+
+
 
     }
 }

@@ -33,7 +33,7 @@ public class Serie {
 
     private String sinopse;
 
-    @OneToMany
+    @OneToMany(mappedBy = "serie")
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie(){}
