@@ -99,4 +99,12 @@ public class Episodio {
                 ", avaliacao=" + avaliacao +
                 ", dataLancamento=" + dataLancamento ;
     }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
 }
