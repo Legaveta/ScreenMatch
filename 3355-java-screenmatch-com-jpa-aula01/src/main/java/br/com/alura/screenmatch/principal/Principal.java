@@ -8,11 +8,7 @@ import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -32,9 +28,10 @@ public class Principal {
     }
 
     public void exibeMenu() {
-        var opcao = -1;
-        while(opcao != 0) {
-            var menu = """
+       try {
+           var opcao = -1;
+           while(opcao != 0) {
+               var menu = """
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar séries buscadas
@@ -42,27 +39,35 @@ public class Principal {
                     0 - Sair                                 
                     """;
 
-            System.out.println(menu);
-            opcao = leitura.nextInt();
-            leitura.nextLine();
+               System.out.println(menu);
+               opcao = leitura.nextInt();
+               leitura.nextLine();
 
-            switch (opcao) {
-                case 1:
-                    buscarSerieWeb();
-                    break;
-                case 2:
-                    buscarEpisodioPorSerie();
-                    break;
-                case 3:
-                    listarSeriesBuscadas();
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-            }
-        }
+               switch (opcao) {
+                   case 1:
+                       buscarSerieWeb();
+                       break;
+                   case 2:
+                       buscarEpisodioPorSerie();
+                       break;
+                   case 3:
+                       listarSeriesBuscadas();
+                       break;
+                   case 0:
+                       System.out.println("Saindo...");
+                       break;
+                   default:
+                       System.out.println("Opção inválida");
+               }
+           }
+
+
+       } catch (InputMismatchException e) {
+           System.out.println("Opção inválida. Por favor, insira um número.");
+           leitura.nextLine();
+
+       }
+
     }
 
     private void buscarSerieWeb() {
