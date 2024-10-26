@@ -1,9 +1,6 @@
 package br.com.alura.screenmatch.principal;
 
-import br.com.alura.screenmatch.model.DadosSerie;
-import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Episodio;
-import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.screenmatch.model.*;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
@@ -36,7 +33,10 @@ public class Principal {
                     2 - Buscar episódios
                     3 - Listar séries buscadas
                     4 - Buscar Série por Titulo 
-                    5 - Buscar serie por Ator               
+                    5 - Buscar serie por Ator        
+                    6 - Top 3 Séries    
+                    7 - Buscar Serie por Categoria   
+                    8 - Buscar Serie por numero de Temporada
                     0 - Sair                                 
                     """;
 
@@ -59,6 +59,15 @@ public class Principal {
                        break;
                    case 5:
                        buscarSeriesPorAtor();
+                       break;
+                   case 6:
+                       buscarTop3Series();
+                       break;
+                   case 7:
+                       buscarSeriesPorCategoria();
+                       break;
+                   case 8:
+                       buscarSeriesPorNumeroTemporadas();
                        break;
                    case 0:
                        System.out.println("Saindo...");
@@ -155,5 +164,28 @@ public class Principal {
         List<Serie> seriesEncontrdas = repositorio.findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, escolhaAvalicao);
         System.out.println("Series em que " + nomeAtor + "  Trabalhou");
         seriesEncontrdas.forEach(s -> System.out.println(s.getTitulo() + " Avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarTop3Series() {
+        List<Serie> topSeries = repositorio.findTop3ByOrderByAvaliacaoDesc();
+        topSeries.forEach(s -> System.out.println(s.getTitulo() + " Avalicação: " + s.getAvaliacao()));
+    }
+    private void buscarSeriesPorCategoria() {
+        System.out.println("Digite a categoria da série que deseja buscar:");
+        var nomeGenero = leitura.nextLine();
+        Categoria categoria = Categoria.fromPortugues(nomeGenero);
+        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+        System.out.println("Series da Categoria: " + nomeGenero);
+        seriesPorCategoria.forEach(System.out::println);
+    }
+
+    private void buscarSeriesPorNumeroTemporadas(){
+        System.out.println("Digite Quantas temporadas deseja:");
+        var numeroTemporada = leitura.nextInt();
+        System.out.println("Digite Qual Avalicao deseja: ");
+        var avalicaoEscolhida = leitura.nextDouble();
+        List<Serie> seriesEncontras = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(numeroTemporada, avalicaoEscolhida);
+        System.out.println("Series Filtradas");
+        seriesEncontras.forEach(System.out::println);
     }
 }
