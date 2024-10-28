@@ -184,7 +184,7 @@ public class Principal {
         var numeroTemporada = leitura.nextInt();
         System.out.println("Digite Qual Avalicao deseja: ");
         var avalicaoEscolhida = leitura.nextDouble();
-        List<Serie> seriesEncontras = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(numeroTemporada, avalicaoEscolhida);
+        List<Serie> seriesEncontras = repositorio.seriesPorTemporadaEAvalicao(numeroTemporada, avalicaoEscolhida);
         System.out.println("Series Filtradas");
         seriesEncontras.forEach(System.out::println);
     }
