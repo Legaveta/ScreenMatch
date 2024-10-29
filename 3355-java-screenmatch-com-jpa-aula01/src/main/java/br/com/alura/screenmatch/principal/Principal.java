@@ -41,6 +41,7 @@ public class Principal {
                     8 - Buscar Serie por numero de Temporada
                     9 - Buscar Episodio por Nome
                     10 - Top 5 Episódios por Série
+                    11 - Buscar Episodios a partir de uma data
                     0 - Sair                                 
                     """;
 
@@ -78,7 +79,12 @@ public class Principal {
                        break;
                    case 10:
                        buscarTop5Series();
+                       break;
+                   case 11:
+                       buscarEpPorData();
+                       break;
                    case 0:
+
                        System.out.println("Saindo...");
                        break;
                    default:
@@ -210,6 +216,19 @@ public class Principal {
             melhoresEpisodios.forEach(e -> System.out.println("Serie: " + e.getSerie().getTitulo() + "  Nome do episódio:" + e.getTitulo() + "Episodio: " + e.getNumeroEpisodio() + "Avaliação: " + e.getAvaliacao()));
         }
 
+    }
+
+    private void buscarEpPorData(){
+        buscarSeriePorTitulo();
+        if (serieBusca.isPresent()){
+            Serie serie = serieBusca.get();
+            System.out.println("A partir de qual ano voce quer ver os episódios lançados?");
+            var dataEscolhida = leitura.nextInt();
+            leitura.nextLine();
+            List<Episodio> episodiosAno = repositorio.buscarPorData(serie, dataEscolhida);
+
+            episodiosAno.forEach(System.out::println);
+        }
     }
 
 }
